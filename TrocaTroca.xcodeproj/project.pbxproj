@@ -17,6 +17,7 @@
 		5C6A39241B88BAB40026176C /* ItemPlaceTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A39231B88BAB40026176C /* ItemPlaceTVC.swift */; };
 		5C6A39261B88BBA80026176C /* NavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A39251B88BBA80026176C /* NavController.swift */; };
 		5C6A392A1B891F430026176C /* ItemDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6A39291B891F430026176C /* ItemDetails.swift */; };
+		7EEC3D5B1B8A199000590ACC /* InventoryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEC3D5A1B8A199000590ACC /* InventoryTVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		5C6A39231B88BAB40026176C /* ItemPlaceTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPlaceTVC.swift; sourceTree = "<group>"; };
 		5C6A39251B88BBA80026176C /* NavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavController.swift; sourceTree = "<group>"; };
 		5C6A39291B891F430026176C /* ItemDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetails.swift; sourceTree = "<group>"; };
+		7EEC3D5A1B8A199000590ACC /* InventoryTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InventoryTVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				5C6A39231B88BAB40026176C /* ItemPlaceTVC.swift */,
 				5C5C8A701B8946B8005F2858 /* ItemTVC.swift */,
 				5C6A39291B891F430026176C /* ItemDetails.swift */,
+				7EEC3D5A1B8A199000590ACC /* InventoryTVC.swift */,
 				5C6A39251B88BBA80026176C /* NavController.swift */,
 			);
 			path = TrocaTroca;
@@ -227,6 +230,7 @@
 				5C5C8A711B8946B8005F2858 /* ItemTVC.swift in Sources */,
 				5C6A39011B88A6800026176C /* AppDelegate.swift in Sources */,
 				5C6A39041B88A6800026176C /* TrocaTroca.xcdatamodeld in Sources */,
+				7EEC3D5B1B8A199000590ACC /* InventoryTVC.swift in Sources */,
 				5C6A392A1B891F430026176C /* ItemDetails.swift in Sources */,
 				5C6A39241B88BAB40026176C /* ItemPlaceTVC.swift in Sources */,
 				5C6A39261B88BBA80026176C /* NavController.swift in Sources */,
@@ -361,6 +365,7 @@
 				INFOPLIST_FILE = TrocaTroca/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -371,6 +376,7 @@
 				INFOPLIST_FILE = TrocaTroca/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

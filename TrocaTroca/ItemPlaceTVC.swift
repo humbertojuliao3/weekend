@@ -13,23 +13,60 @@ class ItemPlaceTVC: UITableViewController {
     var descricao:[String] = []
     var locais:[String] = []
     var imagens:[String] = []
+    var categorias: [String] = []
+    var generos: [String] = []
+    var tamanhos: [String] = []
+    
+    var background: UIView!
+    
+    var didAnimate = false;
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vetProdName = ["Casaco Azul GreatLand","Blusão da Universidade de Pisa", "Camiseta da Organização StartupWeekend"]
-        descricao = ["Casaco Azul original da marca GreatLand, em perfeito estado","Casaco Azul original da Universidade de Pisa, em perfeito estado", "Camisa da Organização StartupWeekend, direto do evento!!!"]
+        
+        background = UIView(frame: self.view.frame);
+        background.backgroundColor = UIColor(red: 21/255, green: 145/255, blue: 136/255, alpha: 1.0);
+        self.view.addSubview(background);
+        
+        vetProdName = ["Salto alto muito desconfortável", "Bolsa qualquer sem marca", "Camiseta da Organização StartupWeekend"]
+        descricao = ["É um salto definitivamente alto.","É uma bolsa maravilhosamente sem marca.", "Camisa da Organização StartupWeekend, direto do evento!!!"]
         locais = ["São Paulo, SP","São Paulo, SP", "São Paulo, SP"]
-        imagens = ["coat","blusao", "organizacao"]
-        
-        
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        imagens = ["saltoalto", "bolsa", "organizacao"]
+        categorias = ["Calçados", "Acessório", "Agasalhos"]
+        generos = ["Feminino", "Feminino", "Unissex"]
+        tamanhos = ["36", "37", "M"]
     }
-
+    
+    override func viewDidAppear(animated: Bool) {
+        if (!didAnimate) {
+            didAnimate = true;
+            let ttIcon = UIImageView(frame: CGRect(x: self.view.center.x/1.5, y: self.view.center.y/4, width: 100, height: 100));
+            ttIcon.image = UIImage(named: "trocatrocaIcon");
+            ttIcon.alpha = 0.0;
+            self.view.addSubview(ttIcon);
+            let ttLogo = UIImageView(frame: CGRect(x: self.view.center.x/1.5, y: self.view.center.y/4, width: 250, height: 100));
+            ttLogo.image = UIImage(named: "trocatrocaLogo");
+            ttLogo.alpha = 0.0;
+            self.view.addSubview(ttLogo);
+            UIView.animateWithDuration(1.5, animations: { () -> Void in
+                ttIcon.alpha = 1.0;
+                }) { (finished) -> Void in
+                    UIView.animateWithDuration(1.0, animations: { () -> Void in
+                        ttIcon.alpha = 0.0;
+                    });
+                    UIView.animateWithDuration(2.5, animations: { () -> Void in
+                        ttLogo.alpha = 1.0;
+                        ttLogo.transform = CGAffineTransformMakeTranslation(-50, 0);
+                        }) { (finished) -> Void in
+                            UIView.animateWithDuration(1.0, animations: { () -> Void in
+                                ttLogo.alpha = 0.0;
+                                self.background.alpha = 0.0;
+                            })
+                    }
+            }
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,56 +98,23 @@ class ItemPlaceTVC: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        var cell = tableView.dequeueReusableCellWithIdentifier("ItemCell")
-        cell = UITableViewCell(style: <#UITableViewCellStyle#>, reuseIdentifier: <#String?#>)
-        item.img.image = UIImage(named: imagens[indexPath.row])
+        performSegueWithIdentifier("itemDetailsSegue", sender: indexPath);
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        if (segue.identifier == "itemDetailsSegue") {
+            let itemDetails = segue.destinationViewController as! ItemDetails;
+            itemDetails.nome = vetProdName[(sender as! NSIndexPath).row];
+            itemDetails.descr = descricao[(sender as! NSIndexPath).row];
+            itemDetails.categoria = categorias[(sender as! NSIndexPath).row];
+            itemDetails.img = UIImage(named: imagens[(sender as! NSIndexPath).row]);
+            itemDetails.genero = "Gênero: " + generos[(sender as! NSIndexPath).row];
+            itemDetails.tamanho = "Tamanho: " + tamanhos[(sender as! NSIndexPath).row];
+            itemDetails.condicao = "Estado: Usado";
+        }
     }
-    */
 
 }
